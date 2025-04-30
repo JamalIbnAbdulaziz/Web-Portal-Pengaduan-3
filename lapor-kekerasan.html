@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portal Pengaduan dan Pelaporan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: rgb(255, 182, 193);
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      background: rgb(255, 246, 247);
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Selamat Datang di Portal Pengaduan Kasus Kekerasan Ventwonic</h1>
+    <p>Wali Kelas: Any Hastuti S. Pd</p>
+    <p>Ketua Kelas: Nandira Almalieka</p>
+
+    <form id="laporanForm">
+      <label for="jenisLaporan">Jenis Pelaporan</label>
+      <select id="jenisLaporan" name="jenisLaporan" required>
+        <option value="">-- Pilih Kategori --</option>
+        <option value="Kekerasan">Kekerasan</option>
+      </select>
+
+      <label for="pelapor">Pelapor</label>
+      <select id="pelapor" name="pelapor" required>
+        <option value="">-- Pilih Kategori --</option>
+        <option value="Saksi">Saksi</option>
+        <option value="Korban">Korban</option>
+      </select>
+
+      <label for="waktu-kejadian">Waktu Kejadian (Opsional)</label>
+      <input type="date" id="tanggal-kejadian" name="tanggal-kejadian">
+      <input type="time" id="waktu-kejadian" name="waktu-kejadian">
+
+      <label for="lokasiKejadian">Lokasi Kejadian</label>
+      <select id="lokasiKejadian" name="lokasiKejadian">
+        <option value="">-- Pilih Lokasi Kejadian --</option>
+        <option value="Masjid">Masjid</option>
+        <option value="Lapangan">Lapangan</option>
+        <option value="Ruang Kelas">Ruang Kelas</option>
+        <option value="Perpustakaan, Ruang Guru">Perpustakaan, Ruang Guru</option>
+        <option value="TU, PSB, R. KEPSEK, Koperasi">TU, PSB, R. KEPSEK, Koperasi</option>
+      </select>
+
+      <label for="deskripsi">Deskripsi Tambahan</label>
+      <textarea id="deskripsi" name="deskripsi" rows="5" required placeholder="Jelaskan secara rinci alur dari kasus yang Anda laporkan"></textarea>
+
+      <label for="bukti">Upload Bukti Pendukung</label>
+      <input type="file" id="bukti" name="bukti" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.mp3,.mp4,.ppt,.pptx" multiple>
+
+      <p><strong>Kontak Pelapor (Opsional)</strong></p>
+
+      <label for="nama">Nama</label>
+      <input type="text" id="nama" name="nama" placeholder="Nama Anda">
+
+      <label for="kontak">Nomor Telepon/Email</label>
+      <input type="text" id="kontak" name="kontak" placeholder="Nomor telepon atau email Anda">
+
+      <button type="submit">Kirim Laporan</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("laporanForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const waktuKejadian = document.getElementById("tanggal-kejadian").value + " " + document.getElementById("waktu-kejadian").value;
+
+      const formData = {
+        jenisLaporan: document.getElementById("jenisLaporan").value,
+        pelapor: document.getElementById("pelapor").value,
+        waktuKejadian: waktuKejadian,
+        lokasiKejadian: document.getElementById("lokasiKejadian").value,
+        deskripsi: document.getElementById("deskripsi").value,
+        nama: document.getElementById("nama").value,
+        kontak: document.getElementById("kontak").value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbxhLrr32AR1xyTpf2lqHI1XYgnZWY9dF52e_0SaB21yBtCT1cyFlNl1H8zcyqGpmxtr/exec", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert("✅ " + data.message);
+        document.getElementById("laporanForm").reset();
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("❌ Terjadi kesalahan saat mengirim laporan.");
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Pengaduan dan Pelaporan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(255, 182, 193);
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgb(255, 246, 247);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, textarea, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Selamat Datang di Portal Pengaduan Kasus Pelecehan Ventwonic</h1>
+        <p>Wali Kelas: Any Hastuti S. Pd</p>
+        <p>Ketua Kelas: Nandira Almalieka</p>
+
+        <form action="file:///D:/Sekolah/SMA%20N%203/XI/P5/Portal/Submit.html" method="post" enctype="multipart/form-data">
+            <label for="jenis-pelaporan">Jenis Pelaporan</label>
+            <select id="jenis-pelaporan" name="jenis-pelaporan" required>
+                <option value="">-- Pilih Kategori --</option>
+                <option value="keamanan">Pelecehan</option>
+            </select>
+
+            <label for="Pelapor">Pelapor</label>
+            <select id="Pelapor" name="Pelapor" required>
+                <option value=" ">-- Pilih Kategori --</option>
+                <option value="keamanan">Saksi</option>
+                <option value="keamanan">Korban</option>
+            </select>
+
+            <label for="waktu-kejadian">Waktu Kejadian (Opsional)</label>
+            <input type="date" id="tanggal-kejadian" name="tanggal-kejadian" required lang="indonesia">
+            <input type="time" id="waktu-kejadian" name="waktu-kejadian" optional>
+
+            <label for="lokasi-kejadian">Lokasi Kejadian</label>
+            <select id="lokasi-kejadian" name="lokasi-kejadian" optional>
+                <option value=" ">-- Pilih Lokasi Kejadian --</option>
+                <option value="keamanan">Masjid</option>
+                <option value="keamanan">Lapangan</option>
+                <option value="keamanan">Ruang Kelas</option>
+                <option value="keamanan">Perpustakaan, Ruang Guru</option>
+                <option value="keamanan">TU, PSB, R. KEPSEK, Koperasi</option>
+            </select>
+
+            <label for="deskripsi">Deskripsi Tambahan</label>
+            <textarea id="deskripsi" name="deskripsi" rows="5" placeholder="Jelaskan secara rinci alur dari kasus yang Anda laporkan" required></textarea>
+
+            <label for="bukti">Upload Bukti Pendukung</label>
+            <input type="file" id="bukti" name="bukti" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.mp3,.mp4,.ppt,.pptx" multiple optional>
+            <div id="preview-container" style="margin-top: 10px;">
+            </div>
+
+            <p><strong>Kontak Pelapor (Opsional)</strong></p>
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama" placeholder="Nama Anda" optional>
+
+            <label for="kontak">Nomor Telepon/Email</label>
+            <input type="text" id="kontak" name="kontak" placeholder="Nomor telepon atau email Anda" optional>
+
+            <button type="submit">Kirim Laporan</button>
+        </form>
+    </div>
+</body>
+</html>
